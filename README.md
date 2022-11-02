@@ -7,3 +7,5 @@ Discover More Music is a Node.js and React based web application that uses your 
   - Uses user listening data for seed songs and artists.
   - Uses frontend input for target acousticness, dancability, instrumentalness, energy, and popularity.
 - Creates a new playlist with the users account of the reccomended songs
+
+![Parameter Sliders](/readme-images/sliders.png)
