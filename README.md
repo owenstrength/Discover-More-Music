@@ -15,6 +15,6 @@ Discover More Music is a Node.js and React based web application that uses your 
   </p>
 
 
-## Notes
+### Notes
  - website currently unavailble.
  - waiting on spotify apporval to have more than 25 users.
