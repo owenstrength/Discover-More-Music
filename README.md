@@ -1,4 +1,4 @@
-# Discover-More-Music
+# Discover More Music
 Discover More Music is a Node.js and React based web application that uses your Spotify listening data to create a new playlist for you.
 
 # Features
