@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import {  logout, createUserPlaylist } from '../spotify';
+import { logout, createUserPlaylist } from '../spotify';
 import Slider from '@mui/material/Slider';
 import Box from '@mui/material/Box';
 import React from 'react';
@@ -76,7 +76,7 @@ var properties = {};
 
 function AcousticnessSlider() {
   properties.acousticness = 70;
-  
+
   const handleAChange = (event, newValue) => {
     properties.acousticness = newValue
   };
@@ -84,14 +84,14 @@ function AcousticnessSlider() {
   return (
     <Box sx={{ width: 400 }}>
       <StyledSliderTitle>Target Acousticness</StyledSliderTitle>
-  <Slider defaultValue={70} aria-label="target_acousticness" valueLabelDisplay="auto" color='secondary' onChange={handleAChange} />
-  </Box>
+      <Slider defaultValue={70} aria-label="target_acousticness" valueLabelDisplay="auto" color='secondary' onChange={handleAChange} />
+    </Box>
   );
 }
 
 function DanceabilitySlider() {
   properties.danceability = 80;
-  
+
   const handleDChange = (event, newValue) => {
     properties.danceability = newValue
   };
@@ -99,14 +99,14 @@ function DanceabilitySlider() {
   return (
     <Box sx={{ width: 400 }}>
       <StyledSliderTitle>Target danceability</StyledSliderTitle>
-  <Slider defaultValue={80} aria-label="target_danceability" valueLabelDisplay="auto" color='secondary' onChange={handleDChange}/>
-  </Box>
+      <Slider defaultValue={80} aria-label="target_danceability" valueLabelDisplay="auto" color='secondary' onChange={handleDChange} />
+    </Box>
   );
 }
 
 function InstrumentalnessSlider() {
   properties.instrumentalness = 55;
-  
+
   const handleIChange = (event, newValue) => {
     properties.instrumentalness = newValue
   };
@@ -114,14 +114,14 @@ function InstrumentalnessSlider() {
   return (
     <Box sx={{ width: 400 }}>
       <StyledSliderTitle>Target Instrumentalness</StyledSliderTitle>
-  <Slider defaultValue={55} aria-label="target_instrumentalness" valueLabelDisplay="auto" color='secondary' onChange={handleIChange}/>
-  </Box>
+      <Slider defaultValue={55} aria-label="target_instrumentalness" valueLabelDisplay="auto" color='secondary' onChange={handleIChange} />
+    </Box>
   );
 }
 
 function EnergySlider() {
   properties.energy = 65;
-  
+
   const handleEChange = (event, newValue) => {
     properties.energy = newValue
   };
@@ -129,14 +129,14 @@ function EnergySlider() {
   return (
     <Box sx={{ width: 400 }}>
       <StyledSliderTitle>Target Energy</StyledSliderTitle>
-  <Slider defaultValue={65} aria-label="target_energy" valueLabelDisplay="auto" color='secondary' onChange={handleEChange}/>
-  </Box>
+      <Slider defaultValue={65} aria-label="target_energy" valueLabelDisplay="auto" color='secondary' onChange={handleEChange} />
+    </Box>
   );
 }
 
 function PopularitySlider() {
   properties.popularity = 85;
-  
+
   const handlePChange = (event, newValue) => {
     properties.popularity = newValue
   };
@@ -144,38 +144,38 @@ function PopularitySlider() {
   return (
     <Box sx={{ width: 400 }}>
       <StyledSliderTitle>Target Popularity</StyledSliderTitle>
-  <Slider defaultValue={85} aria-label="target_popularity" valueLabelDisplay="auto" color='secondary' onChange={handlePChange}/>
-  </Box>
+      <Slider defaultValue={85} aria-label="target_popularity" valueLabelDisplay="auto" color='secondary' onChange={handlePChange} />
+    </Box>
   );
 }
 
 // Display sliders and create playlist button
 function ConfigurePlaylist() {
-  
+
   return (
-  <>  
-  <StyledHomeNavBar>
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"></link>
-          <a href="https://github.com/owenstrength" target="_blank">GitHub</a>
-          <button onClick={logout}>log out</button>
+    <>
+      <StyledHomeNavBar>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"></link>
+        <a href="https://github.com/owenstrength/Discover-More-Music" target="_blank">GitHub</a>
+        <button onClick={logout}>log out</button>
       </StyledHomeNavBar>
-      
+
       <StyledHomeContainer>
-  <StyledTitle>Tell us about the music you want to hear</StyledTitle>
-  <StyledDescription>we'll try our best to find music you'll love</StyledDescription>
+        <StyledTitle>Tell us about the music you want to hear</StyledTitle>
+        <StyledDescription>we'll try our best to find music you'll love</StyledDescription>
 
-  <AcousticnessSlider></AcousticnessSlider>
-  <DanceabilitySlider></DanceabilitySlider>
-  <InstrumentalnessSlider></InstrumentalnessSlider>
-  <EnergySlider></EnergySlider>
-  <PopularitySlider></PopularitySlider>
+        <AcousticnessSlider></AcousticnessSlider>
+        <DanceabilitySlider></DanceabilitySlider>
+        <InstrumentalnessSlider></InstrumentalnessSlider>
+        <EnergySlider></EnergySlider>
+        <PopularitySlider></PopularitySlider>
 
-  <br></br>
+        <br></br>
 
-  <StyledCreateButton onClick={() => createUserPlaylist(properties.acousticness, properties.danceability, properties.instrumentalness, properties.energy, properties.popularity)}>Create a new playlist</StyledCreateButton>
-  </StyledHomeContainer>
-</>
-);
+        <StyledCreateButton onClick={() => createUserPlaylist(properties.acousticness, properties.danceability, properties.instrumentalness, properties.energy, properties.popularity)}>Create a new playlist</StyledCreateButton>
+      </StyledHomeContainer>
+    </>
+  );
 }
 
 export default ConfigurePlaylist;

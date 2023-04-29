@@ -1,5 +1,5 @@
 import styled from 'styled-components/macro';
-import {  logout } from '../spotify';
+import { logout } from '../spotify';
 
 // CSS Styled Componets for the page
 const StyledHomeContainer = styled.main`
@@ -10,10 +10,10 @@ const StyledHomeContainer = styled.main`
   height: 80vh;
 `;
 
-const StyledHomeNavBar = styled.main`
+const StyledHomeNavBar = styled.header`
   display: flex;
-  flex-direction: column;
-  justify-content: top;
+  flex-direction: row;
+  justify-content: space-between;
   align-items: end;
   padding: var(--spacing-sm) var(--spacing-xl);
 `;
@@ -56,30 +56,32 @@ const StyledCreateButton = styled.a`
 
 // displays homepage with button leading to configure page
 const Home = (profile) => (
-        <>  
-        
-        {profile ? (
-            <>
-            <StyledHomeNavBar>
-                <button onClick={logout}>log out</button>
-            </StyledHomeNavBar>
-            <StyledHomeContainer>
+  <>
+
+    {profile ? (
+      <>
+        <StyledHomeNavBar>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"></link>
+          <a href="https://github.com/owenstrength/Discover-More-Music" target="_blank">GitHub</a>
+          <button onClick={logout}>log out</button>
+        </StyledHomeNavBar>
+        <StyledHomeContainer>
           <StyledTitle>hey {profile.display_name}</StyledTitle>
           <StyledDescription>are you ready to discover new music?</StyledDescription>
           <StyledCreateButton
-                className = "App-link"
-                href = "/configure-playlist"
-              >
-                Configure a new playlist
-              </StyledCreateButton>
-              </StyledHomeContainer>
-              </>
-        ): (
-          console.log('shit aint loaded')
-          
-        )}
+            className="App-link"
+            href="/configure-playlist"
+          >
+            Configure a new playlist
+          </StyledCreateButton>
+        </StyledHomeContainer>
       </>
-      
+    ) : (
+      console.log('shit aint loaded')
+
+    )}
+  </>
+
 );
 
 export default Home;

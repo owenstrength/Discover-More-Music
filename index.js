@@ -11,7 +11,10 @@ const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 
 
-// Handle logouts by deleting local storage
+/**
+ * Clear out all localStorage items we've set and reload the page
+ * @returns {void}
+ */
 const logout = () => {
   // Clear all localStorage items
   for (const property in LOCALSTORAGE_KEYS) {
@@ -77,9 +80,10 @@ app.get('/callback', (req, res) => {
         }).toString();
 
         // redirect to homepage
-        
+
         res.redirect(`http://localhost:3000/?${queryParams}`);
       setInterval(async () => {
+        // get refresh token after 30 minutes
         const data = await spotifyApi.refreshAccessToken();
         const access_token = data.body['access_token'];
         logout()
