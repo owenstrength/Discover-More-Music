@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 const SpotifyWebApi = require('spotify-web-api-node');
 const spotifyApi = new SpotifyWebApi();
 
@@ -43,15 +43,45 @@ export const getHashParams = () => {
 };
 
 const refreshAccessToken = async () => {
-  try {
-    const { data } = await axios.get(`/refresh_token?refresh_token=${getLocalRefreshToken()}`);
-    const { access_token } = data;
+  let headers = new Headers();
+
+  headers.append('Content-Type', 'application/json');
+  headers.append('Accept', 'application/json');
+  headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+
+  await fetch(`http://localhost:8888/refresh_token?refresh_token=${getLocalRefreshToken()}`, {
+    mode: 'cors',
+    method: 'GET',
+    credentials: 'include',
+    headers: headers
+  }).then(response => {
+    console.log(response)
+    return response.text();  // Read the response as a text string
+  }).then(data => {
+    console.log(data);  // Log the response data
+    const { access_token } = JSON.parse(data);
+    console.log(access_token)  // Parse the response data as JSON
     setLocalAccessToken(access_token);
-    window.location.reload();
+    spotifyApi.setAccessToken(access_token);
+    window.localStorage.setItem(LOCALSTORAGE_KEYS.timestamp, Date.now());
+
+
+    const refresh_token = getLocalRefreshToken();
+    const expires_in = getLocalAccessToken();
+
+    const queryParams = new URLSearchParams({
+      access_token,
+      refresh_token,
+      expires_in,
+    }).toString();
+
+    // redirect to homepage
+    //window.location.replace(`${window.location.origin}/?${queryParams}`)
+    //window.location.reload();
     return;
-  } catch (e) {
-    console.error(e);
-  }
+  }).catch(error => {
+    console.error(error);
+  });
 };
 
 // Access Token
@@ -65,13 +95,16 @@ const getAccessToken = () => {
   };
   const { error, access_token, refresh_token } = getHashParams();
 
-  if (error) {
+  if (error || !access_token) {
+    console.log("ACCESS TOKEN ERROR")
     console.error(error);
     refreshAccessToken();
   }
 
   // If there is a valid access token in localStorage, use that
   if (LOCALSTORAGE_VALUES.accessToken && LOCALSTORAGE_VALUES.accessToken !== 'undefined') {
+    spotifyApi.setAccessToken(LOCALSTORAGE_VALUES.accessToken);
+    spotifyApi.setRefreshToken(LOCALSTORAGE_VALUES.refreshToken);
     return LOCALSTORAGE_VALUES.accessToken;
   } else if (access_token) {
     setLocalAccessToken(access_token);
@@ -119,10 +152,17 @@ export const logout = () => {
 
 // Allows access to spotify api
 export const accessToken = getAccessToken();
-spotifyApi.setAccessToken(getAccessToken());
 
 // Get info about user
-export const getCurrentUserProfile = () => spotifyApi.getMe();
+export const getCurrentUserProfile = async () => {
+  try {
+    const data = await spotifyApi.getMe();
+    console.log("USER PROFILE", data);
+    return data;
+  } catch (e) {
+    console.error(e);
+  }
+};
 
 // Get users top 2 songs
 var songs = async function getCurrentUserTopSongs() {
@@ -133,7 +173,6 @@ var songs = async function getCurrentUserTopSongs() {
       songList.push(topSongs[0].id)
       songList.push(topSongs[1].id)
       //console.log('songs', songList)
-
     })
   console.log('songs', songList)
   return songList;

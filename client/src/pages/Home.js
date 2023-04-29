@@ -77,7 +77,7 @@ const Home = (profile) => (
         </StyledHomeContainer>
       </>
     ) : (
-      console.log('shit aint loaded')
+      console.warn('Error Loading Profile')
 
     )}
   </>

@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require("express");
 const axios = require('axios');
+const request = require('request');
 const app = express();
 var SpotifyWebApi = require('spotify-web-api-node');
 const { json } = require('express');
@@ -10,6 +11,18 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 
+
+const cors = require("cors");
+
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true,            //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
+}
+
+app.options('*', cors(corsOptions))
+
+app.use(cors(corsOptions))
 
 /**
  * Clear out all localStorage items we've set and reload the page
@@ -32,9 +45,9 @@ var spotifyApi = new SpotifyWebApi({
 });
 
 app.get("/", (req, res) => {
-    res.send(`Hello World${req}`);
-  });
- 
+  res.send(`Hello World${req}`);
+});
+
 // login to spotify 
 app.get("/login", (req, res) => {
   const scopes = ['user-read-private', 'playlist-modify-private', 'user-top-read']
@@ -73,15 +86,15 @@ app.get('/callback', (req, res) => {
         `Sucessfully retreived access token. Expires in ${expires_in} s.`
       );
 
-        const queryParams = new URLSearchParams({
-          access_token,
-          refresh_token,
-          expires_in,
-        }).toString();
+      const queryParams = new URLSearchParams({
+        access_token,
+        refresh_token,
+        expires_in,
+      }).toString();
 
-        // redirect to homepage
+      // redirect to homepage
 
-        res.redirect(`http://localhost:3000/?${queryParams}`);
+      res.redirect(`http://localhost:3000/?${queryParams}`);
       setInterval(async () => {
         // get refresh token after 30 minutes
         const data = await spotifyApi.refreshAccessToken();
@@ -97,8 +110,37 @@ app.get('/callback', (req, res) => {
       res.send(`Error getting Tokens: ${error}`);
     });
 
-
 });
+
+app.get('/refresh_token', function (req, res) {
+  // requesting access token from refresh token
+  const refresh_token = req.query.refresh_token;
+  const authOptions = {
+    url: 'https://accounts.spotify.com/api/token',
+    headers: {
+      Authorization: `Basic ${new Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString(
+        'base64',
+      )}`,
+    },
+    form: {
+      grant_type: 'refresh_token',
+      refresh_token,
+    },
+    json: true,
+  };
+
+  request.post(authOptions, function (error, response, body) {
+    if (!error && response.statusCode === 200) {
+      const access_token = body.access_token;
+      const refresh_token = body.refresh_token;
+      const expires_in = body.expires_in;
+
+
+      res.send({ access_token });
+    }
+  });
+});
+
 
 
 app.listen(PORT, () => {

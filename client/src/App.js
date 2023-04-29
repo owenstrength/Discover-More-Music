@@ -11,7 +11,7 @@ import Login from './pages/Login';
 import Home from './pages/Home';
 import ConfigurePlaylist from './pages/ConfigurePlaylist';
 
-import { accessToken, getCurrentUserProfile  } from './spotify';
+import { accessToken, getCurrentUserProfile } from './spotify';
 
 
 // render home page and initialize  variables
@@ -25,10 +25,12 @@ function App() {
     setToken(accessToken);
 
     const fetchData = async () => {
+      setToken(accessToken);
       try {
         const response = await getCurrentUserProfile();
+        console.log("RESPONSE", response);
         setProfile(response.body);
-      } catch(e) {
+      } catch (e) {
         console.error(e);
       }
     }
@@ -43,7 +45,7 @@ function App() {
       <header className="App-header">
         {!token ? (
           <>
-          <Login />
+            <Login />
           </>
         ) : (
           <Router>
@@ -53,10 +55,10 @@ function App() {
 
               <Route path="/" element={Home(profile)}>
               </Route>
-          </Routes>
-        </Router>
-        
-      )}
+            </Routes>
+          </Router>
+
+        )}
       </header>
     </div>
   );
