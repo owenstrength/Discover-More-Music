@@ -22,20 +22,21 @@ function App() {
 
 
   React.useEffect(() => {
-    setToken(accessToken);
 
     const fetchData = async () => {
       setToken(accessToken);
+      console.log("APP.js " + accessToken)
       try {
         const response = await getCurrentUserProfile();
         console.log("RESPONSE", response);
         setProfile(response.body);
       } catch (e) {
         console.error(e);
+        Window.location.reload()
       }
     }
-
-    fetchData();
+    setToken(accessToken)
+    fetchData()
   }, []);
 
   // show login button if not logged in else show login button

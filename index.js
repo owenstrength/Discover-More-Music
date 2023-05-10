@@ -90,7 +90,7 @@ app.get('/callback', (req, res) => {
         access_token,
         refresh_token,
         expires_in,
-      }).toString();
+      }).toString()
 
       // redirect to homepage
 

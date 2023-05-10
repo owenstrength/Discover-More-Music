@@ -121,6 +121,7 @@ const getAccessToken = () => {
     // Set timestamp
     window.localStorage.setItem(LOCALSTORAGE_KEYS.timestamp, Date.now());
     // Return access token from query params
+
     return queryParams[LOCALSTORAGE_KEYS.accessToken];
   }
 
@@ -153,6 +154,7 @@ export const logout = () => {
 // Allows access to spotify api
 export const accessToken = getAccessToken();
 
+spotifyApi.setAccessToken(accessToken)
 // Get info about user
 export const getCurrentUserProfile = async () => {
   try {
@@ -160,13 +162,14 @@ export const getCurrentUserProfile = async () => {
     console.log("USER PROFILE", data);
     return data;
   } catch (e) {
-    console.error(e);
+    console.error("USER PROFILE LINE 163", e);
   }
 };
 
 // Get users top 2 songs
 var songs = async function getCurrentUserTopSongs() {
   let songList = [];
+
   await spotifyApi.getMyTopTracks({ limit: 2, time_range: 'short_term' })
     .then(function (data) {
       var topSongs = data.body.items;
