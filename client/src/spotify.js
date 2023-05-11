@@ -147,7 +147,8 @@ export const logout = () => {
     window.localStorage.removeItem(LOCALSTORAGE_KEYS[property]);
   }
   // Navigate to homepage
-  window.location = window.location.origin;
+  window.history.pushState({}, document.title, "/");
+  window.location = window.location.host;
   window.location.reload();
 };
 
