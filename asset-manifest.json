@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/discover-more-music/static/css/main.e6c13ad2.css",
+    "main.js": "/discover-more-music/static/js/main.8ad98abe.js",
+    "static/js/787.c4e7f8f9.chunk.js": "/discover-more-music/static/js/787.c4e7f8f9.chunk.js",
+    "index.html": "/discover-more-music/index.html",
+    "main.e6c13ad2.css.map": "/discover-more-music/static/css/main.e6c13ad2.css.map",
+    "main.8ad98abe.js.map": "/discover-more-music/static/js/main.8ad98abe.js.map",
+    "787.c4e7f8f9.chunk.js.map": "/discover-more-music/static/js/787.c4e7f8f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.8ad98abe.js"
+  ]
+}
