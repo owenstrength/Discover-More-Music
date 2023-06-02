@@ -13,7 +13,7 @@
     "build-client": "cd client && npm run build",
     "build-server": "echo 'Build server script goes here'"
   },
-  "proxy": "https://owenstrength.github.io/Discover-More-Music/",
+  "proxy": "https://discover-more-music-backend.onrender.com",
   "keywords": [],
   "author": "",
   "license": "ISC",
