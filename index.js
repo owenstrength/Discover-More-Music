@@ -15,7 +15,7 @@ const REDIRECT_URI = process.env.REDIRECT_URI;
 const cors = require("cors");
 
 const corsOptions = {
-  origin: 'http://localhost:3000',
+  origin: 'https://owenstrength.github.io/Discover-More-Music/',
   credentials: true,            //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 }
@@ -90,11 +90,11 @@ app.get('/callback', (req, res) => {
         access_token,
         refresh_token,
         expires_in,
-      }).toString();
+      }).toString()
 
       // redirect to homepage
 
-      res.redirect(`http://localhost:3000/?${queryParams}`);
+      res.redirect(`https://owenstrength.github.io/Discover-More-Music/?${queryParams}`);
       setInterval(async () => {
         // get refresh token after 30 minutes
         const data = await spotifyApi.refreshAccessToken();

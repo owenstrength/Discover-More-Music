@@ -49,7 +49,7 @@ const Login = () => (
   <StyledLoginContainer>
     <StyledTitle>Discover More Music</StyledTitle>
     <StyledDescription>listen to something new</StyledDescription>
-    <StyledLoginButton href="http://localhost:8888/login">
+    <StyledLoginButton href="https://owenstrength.github.io/Discover-More-Music/login">
       Log in with Spotify
     </StyledLoginButton>
   </StyledLoginContainer>

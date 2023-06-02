@@ -47,9 +47,9 @@ const refreshAccessToken = async () => {
 
   headers.append('Content-Type', 'application/json');
   headers.append('Accept', 'application/json');
-  headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+  headers.append('Access-Control-Allow-Origin', 'https://owenstrength.github.io/Discover-More-Music/');
 
-  await fetch(`http://localhost:8888/refresh_token?refresh_token=${getLocalRefreshToken()}`, {
+  await fetch(`https://owenstrength.github.io/Discover-More-Music/refresh_token?refresh_token=${getLocalRefreshToken()}`, {
     mode: 'cors',
     method: 'GET',
     credentials: 'include',
@@ -121,6 +121,7 @@ const getAccessToken = () => {
     // Set timestamp
     window.localStorage.setItem(LOCALSTORAGE_KEYS.timestamp, Date.now());
     // Return access token from query params
+
     return queryParams[LOCALSTORAGE_KEYS.accessToken];
   }
 
@@ -146,12 +147,16 @@ export const logout = () => {
     window.localStorage.removeItem(LOCALSTORAGE_KEYS[property]);
   }
   // Navigate to homepage
-  window.location.replace(`http://localhost:3000/`);
+
+  window.history.pushState({}, document.title, "/");
+  window.location = window.location.host;
+  window.location.reload();
 };
 
 // Allows access to spotify api
 export const accessToken = getAccessToken();
 
+spotifyApi.setAccessToken(accessToken)
 // Get info about user
 export const getCurrentUserProfile = async () => {
   try {
@@ -159,13 +164,14 @@ export const getCurrentUserProfile = async () => {
     console.log("USER PROFILE", data);
     return data;
   } catch (e) {
-    console.error(e);
+    console.error("USER PROFILE LINE 163", e);
   }
 };
 
 // Get users top 2 songs
 var songs = async function getCurrentUserTopSongs() {
   let songList = [];
+
   await spotifyApi.getMyTopTracks({ limit: 2, time_range: 'short_term' })
     .then(function (data) {
       var topSongs = data.body.items;
