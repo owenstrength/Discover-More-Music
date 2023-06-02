@@ -146,8 +146,7 @@ export const logout = () => {
     window.localStorage.removeItem(LOCALSTORAGE_KEYS[property]);
   }
   // Navigate to homepage
-  window.location = window.location.origin;
-  window.location.reload();
+  window.location.replace(`http://localhost:3000/`);
 };
 
 // Allows access to spotify api
