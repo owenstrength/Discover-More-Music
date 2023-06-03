@@ -43,16 +43,16 @@ export const getHashParams = () => {
 };
 
 const refreshAccessToken = async () => {
-  let headers = {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'Access-Control-Allow-Origin': 'https://owenstrength.github.io'
+  let headers = new Headers();
 
-  }
+  headers.append('Content-Type', 'application/json');
+  headers.append('Accept', 'application/json');
+  headers.append('Access-Control-Allow-Origin', 'https://owenstrength.github.io');
 
-
-  console.log(headers)
-  await axios.get(`https://discover-more-music-backend.onrender.com/refresh_token?refresh_token=${getLocalRefreshToken()}`, {
+  await fetch(`https://discover-more-music-backend.onrender.com/refresh_token?refresh_token=${getLocalRefreshToken()}`, {
+    mode: 'cors',
+    method: 'GET',
+    credentials: 'include',
     headers: headers
   }).then(response => {
     console.log(response)
@@ -76,8 +76,8 @@ const refreshAccessToken = async () => {
     }).toString();
 
     // redirect to homepage
-    window.location.replace(`${window.location.origin}/?${queryParams}`)
-    window.location.reload();
+    //window.location.replace(`${window.location.origin}/?${queryParams}`)
+    //window.location.reload();
     return;
   }).catch(error => {
     console.error(error);

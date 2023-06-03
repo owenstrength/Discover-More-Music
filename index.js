@@ -18,6 +18,7 @@ const corsOptions = {
   origin: ['http://localhost:3000', 'http://localhost:8888', 'https://owenstrength.github.io/Discover-More-Music', 'https://discover-more-music-backend.onrender.com'],
   credentials: true,            //access-control-allow-credentials:true
   optionSuccessStatus: 200,
+
 }
 
 app.options('*', cors(corsOptions))
@@ -94,7 +95,6 @@ app.get('/callback', (req, res) => {
 
       // redirect to homepage
 
-      res.header('Access-Control-Allow-Origin', 'https://owenstrength.github.io');
       res.redirect(`https://owenstrength.github.io/Discover-More-Music/?${queryParams}`);
       setInterval(async () => {
         // get refresh token after 30 minutes
