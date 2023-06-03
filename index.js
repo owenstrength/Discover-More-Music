@@ -94,7 +94,7 @@ app.get('/callback', (req, res) => {
 
       // redirect to homepage
 
-      res.header('Access-Control-Allow-Origin', 'https://owenstrength.github.io/Discover-More-Music/');
+      res.header('Access-Control-Allow-Origin', 'https://owenstrength.github.io/Discover-More-Music');
       res.redirect(`https://owenstrength.github.io/Discover-More-Music/?${queryParams}`);
       setInterval(async () => {
         // get refresh token after 30 minutes

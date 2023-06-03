@@ -47,7 +47,7 @@ const refreshAccessToken = async () => {
 
   headers.append('Content-Type', 'application/json');
   headers.append('Accept', 'application/json');
-  headers.append('Access-Control-Allow-Origin', 'https://owenstrength.github.io/Discover-More-Music/');
+  headers.append('Access-Control-Allow-Origin', 'https://owenstrength.github.io');
 
   await fetch(`https://discover-more-music-backend.onrender.com/refresh_token?refresh_token=${getLocalRefreshToken()}`, {
     mode: 'cors',
