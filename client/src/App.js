@@ -21,7 +21,7 @@ function App() {
 
 
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
 
     const fetchData = async () => {
       setToken(accessToken);
@@ -38,6 +38,8 @@ function App() {
     setToken(accessToken)
     fetchData()
   }, []);
+
+
 
   // show login button if not logged in else show login button
   return (
