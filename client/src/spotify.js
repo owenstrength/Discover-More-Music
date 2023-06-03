@@ -79,8 +79,8 @@ const refreshAccessToken = async () => {
     }).toString();
 
     // redirect to homepage
-    //window.location.replace(`${window.location.origin}/?${queryParams}`)
-    //window.location.reload();
+    window.location.replace(`${window.location.origin}/?${queryParams}`)
+    window.location.reload();
     return;
   }).catch(error => {
     console.error(error);
