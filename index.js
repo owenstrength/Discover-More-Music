@@ -15,7 +15,7 @@ const REDIRECT_URI = process.env.REDIRECT_URI;
 const cors = require("cors");
 
 const corsOptions = {
-  origin: ['http://localhost:3000', 'http://localhost:8888', 'https://owenstrength.github.io/Discover-More-Music', 'https://discover-more-music-backend.onrender.com'],
+  origin: ['http://localhost:3000', 'http://localhost:8888', 'https://owenstrength.github.io/Discover-More-Music', 'https://discover-more-music-backend.onrender.com', 'https://owenstrength.github.io'],
   credentials: true,            //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 
