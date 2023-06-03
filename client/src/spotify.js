@@ -53,9 +53,6 @@ const refreshAccessToken = async () => {
 
   console.log(headers)
   await axios.get(`https://discover-more-music-backend.onrender.com/refresh_token?refresh_token=${getLocalRefreshToken()}`, {
-    mode: 'no-cors',
-    method: 'GET',
-    credentials: 'include',
     headers: headers
   }).then(response => {
     console.log(response)
