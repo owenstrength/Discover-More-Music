@@ -21,7 +21,7 @@ function App() {
 
 
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
 
     const fetchData = async () => {
       setToken(accessToken);
@@ -37,7 +37,7 @@ function App() {
     }
     setToken(accessToken)
     fetchData()
-  }, []);
+  }, [profile]);
 
 
 
