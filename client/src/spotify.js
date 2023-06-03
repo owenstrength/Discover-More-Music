@@ -43,16 +43,16 @@ export const getHashParams = () => {
 };
 
 const refreshAccessToken = async () => {
-  let headers = new Headers();
+  let headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Access-Control-Allow-Origin': 'https://owenstrength.github.io'
 
-  headers.append('Content-Type', 'application/json');
-  headers.append('Accept', 'application/json');
-  headers.append('Access-Control-Allow-Origin', 'https://owenstrength.github.io');
+  }
 
-  await fetch(`https://discover-more-music-backend.onrender.com/refresh_token?refresh_token=${getLocalRefreshToken()}`, {
-    mode: 'cors',
-    method: 'GET',
-    credentials: 'include',
+
+  console.log(headers)
+  await axios.get(`https://discover-more-music-backend.onrender.com/refresh_token?refresh_token=${getLocalRefreshToken()}`, {
     headers: headers
   }).then(response => {
     console.log(response)
