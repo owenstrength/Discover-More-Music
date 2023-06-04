@@ -42,7 +42,7 @@ function App() {
   }, [profile]);
 
 
-
+  console.log('PROFILE ', profile)
   // show login button if not logged in else show login button
   return (
     <div className="App">
