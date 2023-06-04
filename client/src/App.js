@@ -5,6 +5,7 @@ import {
   HashRouter as Router,
   Routes,
   Route,
+  Link
 } from 'react-router-dom';
 
 import Login from './pages/Login';
@@ -55,7 +56,15 @@ function App() {
             <Routes>
               <Route path="/configure-playlist" element={<ConfigurePlaylist />} />
 
-              <Route path="/" element={<Home profile={profile} />} />
+              <Route
+                path="/"
+                element={
+                  <>
+                    <Home profile={profile} />
+                    <Link to="/configure-playlist">Configure Playlist</Link>
+                  </>
+                }
+              />
             </Routes>
           </Router>
         ) : null}
