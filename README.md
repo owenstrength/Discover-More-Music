@@ -16,5 +16,5 @@ Discover More Music is a Node.js and React based web application that uses your 
 
 
 ### Notes
- - website currently unavailble.
+ - website: https://owenstrength.github.io/Discover-More-Music
  - waiting on spotify apporval to have more than 25 users.
