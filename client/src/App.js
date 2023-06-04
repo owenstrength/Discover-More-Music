@@ -37,7 +37,7 @@ function App() {
     }
     setToken(accessToken)
     fetchData()
-  }, [profile]);
+  }, []);
 
 
 
