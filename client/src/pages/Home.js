@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro';
 import { logout } from '../spotify';
+import { Link } from 'react-router-dom';
 
 // CSS Styled Componets for the page
 const StyledHomeContainer = styled.main`
@@ -73,12 +74,11 @@ const Home = ({ profile }) => {
           <StyledHomeContainer>
             <StyledTitle>hey {profile.display_name}</StyledTitle>
             <StyledDescription>are you ready to discover new music?</StyledDescription>
-            <StyledCreateButton
-              className="App-link"
-              href="/configure-playlist"
-            >
-              Configure a new playlist
-            </StyledCreateButton>
+            <Link to="/configure-playlist">
+              <StyledCreateButton className="App-link">
+                Configure a new playlist
+              </StyledCreateButton>
+            </Link>
           </StyledHomeContainer>
         </>
       ) : (
