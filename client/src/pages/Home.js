@@ -54,6 +54,8 @@ const StyledCreateButton = styled.a`
   },
 `;
 
+console.log('homepageLoaded');
+
 // displays homepage with button leading to configure page
 const Home = (profile) => (
   <>

@@ -29,7 +29,9 @@ function App() {
       try {
         const response = await getCurrentUserProfile();
         console.log("RESPONSE", response);
-        setProfile(response.body);
+        if (profile == null) {
+          setProfile(response.body);
+        }
       } catch (e) {
         console.error(e);
         Window.location.reload()
@@ -37,7 +39,7 @@ function App() {
     }
     setToken(accessToken)
     fetchData()
-  }, []);
+  }, [profile]);
 
 
 
@@ -47,21 +49,16 @@ function App() {
       <GlobalStyle />
       <header className="App-header">
         {!token ? (
-          <>
-            <Login />
-          </>
-        ) : (
+          <Login />
+        ) : profile ? (
           <Router>
             <Routes>
-              <Route path="/configure-playlist" element={<ConfigurePlaylist />}>
-              </Route>
+              <Route path="/configure-playlist" element={<ConfigurePlaylist />} />
 
-              <Route path="/" element={Home(profile)}>
-              </Route>
+              <Route path="/" element={<Home profile={profile} />} />
             </Routes>
           </Router>
-
-        )}
+        ) : null}
       </header>
     </div>
   );
