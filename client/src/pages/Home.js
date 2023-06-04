@@ -54,36 +54,40 @@ const StyledCreateButton = styled.a`
   },
 `;
 
-console.log('homepageLoaded');
+
 
 // displays homepage with button leading to configure page
-const Home = (profile) => (
-  <>
+const Home = ({ profile }) => {
 
-    {profile ? (
-      <>
-        <StyledHomeNavBar>
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"></link>
-          <a href="https://github.com/owenstrength/Discover-More-Music" target="_blank">GitHub</a>
-          <button onClick={logout}>log out</button>
-        </StyledHomeNavBar>
-        <StyledHomeContainer>
-          <StyledTitle>hey {profile.display_name}</StyledTitle>
-          <StyledDescription>are you ready to discover new music?</StyledDescription>
-          <StyledCreateButton
-            className="App-link"
-            href="/configure-playlist"
-          >
-            Configure a new playlist
-          </StyledCreateButton>
-        </StyledHomeContainer>
-      </>
-    ) : (
-      console.warn('Error Loading Profile')
+  console.log('HOMEPAGE PROFILE', profile)
+  return (
+    <>
 
-    )}
-  </>
+      {profile ? (
+        <>
+          <StyledHomeNavBar>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"></link>
+            <a href="https://github.com/owenstrength/Discover-More-Music" target="_blank">GitHub</a>
+            <button onClick={logout}>log out</button>
+          </StyledHomeNavBar>
+          <StyledHomeContainer>
+            <StyledTitle>hey {profile.display_name}</StyledTitle>
+            <StyledDescription>are you ready to discover new music?</StyledDescription>
+            <StyledCreateButton
+              className="App-link"
+              href="/configure-playlist"
+            >
+              Configure a new playlist
+            </StyledCreateButton>
+          </StyledHomeContainer>
+        </>
+      ) : (
+        console.warn('Error Loading Profile')
 
-);
+      )}
+    </>
+
+  );
+}
 
 export default Home;
