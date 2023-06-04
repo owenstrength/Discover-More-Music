@@ -61,7 +61,7 @@ function App() {
                 element={
                   <>
                     <Home profile={profile} />
-                    <Link to="/configure-playlist">Configure Playlist</Link>
+                    <Link to="/configure-playlist"></Link>
                   </>
                 }
               />
