@@ -148,7 +148,7 @@ export const logout = () => {
   }
   // Navigate to homepage
 
-  window.history.pushState({}, document.title, "/");
+  window.history.pushState({}, document.title, "/Discover-More-Music");
   window.location = window.location.host;
   window.location.reload();
 };
