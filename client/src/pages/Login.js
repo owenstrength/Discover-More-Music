@@ -53,6 +53,7 @@ const Login = () => (
     <StyledDescription>listen to something new</StyledDescription>
     <StyledLoginButton href="https://discover-more-music-backend.onrender.com/login">
       Log in with Spotify
+      <image src="../../public/icon2@2x.png" alt="Spotify Logo" width="30" height="30"></image>
     </StyledLoginButton>
   </StyledLoginContainer>
 );

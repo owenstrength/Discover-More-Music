@@ -172,7 +172,7 @@ function ConfigurePlaylist() {
 
         <br></br>
 
-        <StyledCreateButton onClick={() => createUserPlaylist(properties.acousticness, properties.danceability, properties.instrumentalness, properties.energy, properties.popularity)}>Create a new playlist</StyledCreateButton>
+        <StyledCreateButton onClick={() => createUserPlaylist(properties.acousticness, properties.danceability, properties.instrumentalness, properties.energy, properties.popularity)}>Create a new Playlist</StyledCreateButton>
       </StyledHomeContainer>
     </>
   );

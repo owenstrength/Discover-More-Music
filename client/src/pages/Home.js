@@ -76,7 +76,7 @@ const Home = ({ profile }) => {
             <StyledDescription>are you ready to discover new music?</StyledDescription>
             <Link to="/configure-playlist">
               <StyledCreateButton className="App-link">
-                Configure a new playlist
+                Configure a New playlist
               </StyledCreateButton>
             </Link>
           </StyledHomeContainer>
