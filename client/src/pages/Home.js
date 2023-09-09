@@ -47,11 +47,25 @@ const StyledCreateButton = styled.a`
   font-size: var(--fz-xl);
   padding: var(--spacing-sm) var(--spacing-xl);
 
+  img { 
+    width: 50px;
+    height: 50px;
+    margin-right: -10px;
+    margin-top: -10px;
+    margin-bottom: -10px;
+    transition: all 0.3s ease;
+  }
+
   &:hover,
   &:focus {
     text-decoration: none;
     filter: brightness(1.1);
-    font-size: var(--fz-xxl)
+    font-size: var(--fz-xxl);
+    img {
+      width: 60px;
+      height: 60px;
+      transition: all 0.3s ease;
+      }
   },
 `;
 
@@ -76,7 +90,8 @@ const Home = ({ profile }) => {
             <StyledDescription>are you ready to discover new music?</StyledDescription>
             <Link to="/configure-playlist">
               <StyledCreateButton className="App-link">
-                Configure a New playlist
+                Configure a New Playlist
+                <img src="https://developer.spotify.com/images/guidelines/design/icon4@2x.png" alt="Spotify Logo"></img>
               </StyledCreateButton>
             </Link>
           </StyledHomeContainer>

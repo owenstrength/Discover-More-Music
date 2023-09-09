@@ -57,6 +57,14 @@ const StyledCreateButton = styled.button`
   font-weight: 700;
   font-size: var(--fz-xl);
   padding: var(--spacing-sm) var(--spacing-xl);
+  img { 
+    width: 50px;
+    height: 50px;
+    margin-right: -10px;
+    margin-top: -10px;
+    margin-bottom: -10px;
+    transition: all 0.3s ease;
+  }
 
   &:hover,
   &:focus {
@@ -64,6 +72,11 @@ const StyledCreateButton = styled.button`
     filter: brightness(1.1);
     font-size: var(--fz-xxl);
     background-color: var(--green);
+    img {
+    width: 60px;
+    height: 60px;
+    transition: all 0.3s ease;
+    }
   },
 `;
 
@@ -172,7 +185,10 @@ function ConfigurePlaylist() {
 
         <br></br>
 
-        <StyledCreateButton onClick={() => createUserPlaylist(properties.acousticness, properties.danceability, properties.instrumentalness, properties.energy, properties.popularity)}>Create a new Playlist</StyledCreateButton>
+        <StyledCreateButton onClick={() => createUserPlaylist(properties.acousticness, properties.danceability, properties.instrumentalness, properties.energy, properties.popularity)}>
+          Create a New Playlist
+          <img src="https://developer.spotify.com/images/guidelines/design/icon4@2x.png" alt="Spotify Logo"></img>
+        </StyledCreateButton>
       </StyledHomeContainer>
     </>
   );

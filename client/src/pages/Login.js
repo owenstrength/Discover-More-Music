@@ -10,19 +10,32 @@ const StyledLoginContainer = styled.main`
 `;
 
 const StyledLoginButton = styled.a`
-  display: inline-block;
+  display: flex;
   background-color: var(--green);
   color: var(--white);
   border-radius: var(--border-radius-pill);
   font-weight: 700;
   font-size: var(--fz-xl);
   padding: var(--spacing-sm) var(--spacing-xl);
+  img { 
+    width: 50px;
+    height: 50px;
+    margin-right: -10px;
+    margin-top: -10px;
+    margin-bottom: -10px;
+    transition: all 0.3s ease;
+  }
 
   &:hover,
   &:focus {
     text-decoration: none;
     filter: brightness(1.1);
-    font-size: var(--fz-xxl)
+    font-size: var(--fz-xxl);
+    img {
+    width: 60px;
+    height: 60px;
+    transition: all 0.3s ease;
+    }
   },
 `;
 
@@ -53,7 +66,7 @@ const Login = () => (
     <StyledDescription>listen to something new</StyledDescription>
     <StyledLoginButton href="https://discover-more-music-backend.onrender.com/login">
       Log in with Spotify
-      <image src="../../public/icon2@2x.png" alt="Spotify Logo" width="30" height="30"></image>
+      <img src="https://developer.spotify.com/images/guidelines/design/icon4@2x.png" alt="Spotify Logo"></img>
     </StyledLoginButton>
   </StyledLoginContainer>
 );
