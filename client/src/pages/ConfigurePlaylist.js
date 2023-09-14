@@ -111,7 +111,7 @@ function DanceabilitySlider() {
 
   return (
     <Box sx={{ width: 400 }}>
-      <StyledSliderTitle>Target danceability</StyledSliderTitle>
+      <StyledSliderTitle>Target Danceability</StyledSliderTitle>
       <Slider defaultValue={80} aria-label="target_danceability" valueLabelDisplay="auto" color='secondary' onChange={handleDChange} />
     </Box>
   );

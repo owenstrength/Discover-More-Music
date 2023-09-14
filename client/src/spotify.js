@@ -228,7 +228,9 @@ export const createUserPlaylist = async function createUserPlaylist(acousticness
       await spotifyApi.addTracksToPlaylist(data.body.id, tracks)
       // log link to playlist
       console.log(data.body.external_urls.spotify);
-      window.open(data.body.external_urls.spotify, "_blank")
+      var newWindow = window.open();
+      newWindow.location = data.body.external_urls.spotify;
+      //window.open(data.body.external_urls.spotify, "_blank")
 
 
     })
