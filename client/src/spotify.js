@@ -98,7 +98,7 @@ const getAccessToken = () => {
   if (error || !access_token) {
     console.log("ACCESS TOKEN ERROR")
     console.error(error);
-    refreshAccessToken();
+    clearMemory();
   }
 
   // If there is a valid access token in localStorage, use that
@@ -152,6 +152,13 @@ export const logout = () => {
   window.location = window.location.host;
   window.location.reload();
 };
+
+export const clearMemory = () => {
+  window.localStorage.clear();
+  window.location.reload();
+
+}
+
 
 // Allows access to spotify api
 export const accessToken = getAccessToken();
