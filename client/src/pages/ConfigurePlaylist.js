@@ -4,7 +4,6 @@ import Slider from '@mui/material/Slider';
 import Box from '@mui/material/Box';
 import React from 'react';
 
-
 // CSS Styled Componets for the page
 const StyledHomeContainer = styled.main`
   display: flex;
@@ -28,7 +27,9 @@ const StyledTitle = styled.h1`
   border-radius: var(--border-radius-pill);
   font-weight: 700;
   font-size: var(--fz-xxxl);
-
+  flex-direction: row;
+  font-size: 50;
+  text-align: center;
 `;
 
 const StyledDescription = styled.h2`
@@ -38,7 +39,6 @@ const StyledDescription = styled.h2`
   font-weight: 500;
   font-size: var(--fz-md);
   padding: var(--spacing-xs) var(--spacing-md);
-
 `;
 
 const StyledSliderTitle = styled.h2`
@@ -46,7 +46,6 @@ const StyledSliderTitle = styled.h2`
   color: var(--white);
   font-weight: 500;
   font-size: var(--fz-md);
-
 `;
 
 const StyledCreateButton = styled.button`
@@ -73,32 +72,50 @@ const StyledCreateButton = styled.button`
     font-size: var(--fz-xxl);
     background-color: var(--green);
     img {
-    width: 60px;
-    height: 60px;
-    transition: all 0.3s ease;
+      width: 60px;
+      height: 60px;
+      transition: all 0.3s ease;
     }
-  },
+  }
 `;
-
 
 // Song properties variable
 var properties = {};
 
+// Slider component with dynamic width
+function CustomSlider({ defaultValue, ariaLabel, valueLabelDisplay, color, onChange, width, title }) {
+  return (
+    <Box sx={{ width }}>
+      <StyledSliderTitle>{title}</StyledSliderTitle>
+      <Slider
+        defaultValue={defaultValue}
+        aria-label={ariaLabel}
+        valueLabelDisplay={valueLabelDisplay}
+        color={color}
+        onChange={onChange}
+      />
+    </Box>
+  );
+}
 
 // All sliders on the page below for setting a parameter in the recoomendations function.
-
 function AcousticnessSlider() {
   properties.acousticness = 70;
 
   const handleAChange = (event, newValue) => {
-    properties.acousticness = newValue
+    properties.acousticness = newValue;
   };
 
   return (
-    <Box sx={{ width: 400 }}>
-      <StyledSliderTitle>Target Acousticness</StyledSliderTitle>
-      <Slider defaultValue={70} aria-label="target_acousticness" valueLabelDisplay="auto" color='secondary' onChange={handleAChange} />
-    </Box>
+    <CustomSlider
+      defaultValue={70}
+      ariaLabel="target_acousticness"
+      title="Target Acousticness"
+      valueLabelDisplay="auto"
+      color="secondary"
+      onChange={handleAChange}
+      width={'33%'}
+    />
   );
 }
 
@@ -106,14 +123,19 @@ function DanceabilitySlider() {
   properties.danceability = 80;
 
   const handleDChange = (event, newValue) => {
-    properties.danceability = newValue
+    properties.danceability = newValue;
   };
 
   return (
-    <Box sx={{ width: 400 }}>
-      <StyledSliderTitle>Target Danceability</StyledSliderTitle>
-      <Slider defaultValue={80} aria-label="target_danceability" valueLabelDisplay="auto" color='secondary' onChange={handleDChange} />
-    </Box>
+    <CustomSlider
+      defaultValue={80}
+      ariaLabel="target_danceability"
+      title="Target Danceability"
+      valueLabelDisplay="auto"
+      color="secondary"
+      onChange={handleDChange}
+      width={'33%'}
+    />
   );
 }
 
@@ -121,14 +143,19 @@ function InstrumentalnessSlider() {
   properties.instrumentalness = 55;
 
   const handleIChange = (event, newValue) => {
-    properties.instrumentalness = newValue
+    properties.instrumentalness = newValue;
   };
 
   return (
-    <Box sx={{ width: 400 }}>
-      <StyledSliderTitle>Target Instrumentalness</StyledSliderTitle>
-      <Slider defaultValue={55} aria-label="target_instrumentalness" valueLabelDisplay="auto" color='secondary' onChange={handleIChange} />
-    </Box>
+    <CustomSlider
+      defaultValue={55}
+      ariaLabel="target_instrumentalness"
+      title="Target Instrumentalness"
+      valueLabelDisplay="auto"
+      color="secondary"
+      onChange={handleIChange}
+      width={'33%'}
+    />
   );
 }
 
@@ -136,14 +163,19 @@ function EnergySlider() {
   properties.energy = 65;
 
   const handleEChange = (event, newValue) => {
-    properties.energy = newValue
+    properties.energy = newValue;
   };
 
   return (
-    <Box sx={{ width: 400 }}>
-      <StyledSliderTitle>Target Energy</StyledSliderTitle>
-      <Slider defaultValue={65} aria-label="target_energy" valueLabelDisplay="auto" color='secondary' onChange={handleEChange} />
-    </Box>
+    <CustomSlider
+      defaultValue={65}
+      ariaLabel="target_energy"
+      title="Target Energy"
+      valueLabelDisplay="auto"
+      color="secondary"
+      onChange={handleEChange}
+      width={'33%'}
+    />
   );
 }
 
@@ -151,20 +183,24 @@ function PopularitySlider() {
   properties.popularity = 85;
 
   const handlePChange = (event, newValue) => {
-    properties.popularity = newValue
+    properties.popularity = newValue;
   };
 
   return (
-    <Box sx={{ width: 400 }}>
-      <StyledSliderTitle>Target Popularity</StyledSliderTitle>
-      <Slider defaultValue={85} aria-label="target_popularity" valueLabelDisplay="auto" color='secondary' onChange={handlePChange} />
-    </Box>
+    <CustomSlider
+      defaultValue={85}
+      ariaLabel="target_popularity"
+      title="Target Popularity"
+      valueLabelDisplay="auto"
+      color="secondary"
+      onChange={handlePChange}
+      width={'33%'}
+    />
   );
 }
 
 // Display sliders and create playlist button
 function ConfigurePlaylist() {
-
   return (
     <>
       <StyledHomeNavBar>
@@ -177,17 +213,17 @@ function ConfigurePlaylist() {
         <StyledTitle>Tell us about the music you want to hear</StyledTitle>
         <StyledDescription>we'll try our best to find music you'll love</StyledDescription>
 
-        <AcousticnessSlider></AcousticnessSlider>
-        <DanceabilitySlider></DanceabilitySlider>
-        <InstrumentalnessSlider></InstrumentalnessSlider>
-        <EnergySlider></EnergySlider>
-        <PopularitySlider></PopularitySlider>
+        <AcousticnessSlider />
+        <DanceabilitySlider />
+        <InstrumentalnessSlider />
+        <EnergySlider />
+        <PopularitySlider />
 
-        <br></br>
+        <br />
 
         <StyledCreateButton onClick={() => createUserPlaylist(properties.acousticness, properties.danceability, properties.instrumentalness, properties.energy, properties.popularity)}>
           Create a New Playlist
-          <img src="https://developer.spotify.com/images/guidelines/design/icon4@2x.png" alt="Spotify Logo"></img>
+          <img src="https://developer.spotify.com/images/guidelines/design/icon4@2x.png" alt="Spotify Logo" />
         </StyledCreateButton>
       </StyledHomeContainer>
     </>

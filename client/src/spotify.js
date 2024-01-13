@@ -95,11 +95,17 @@ const getAccessToken = () => {
   };
   const { error, access_token, refresh_token } = getHashParams();
 
-  if (error || !access_token) {
+  if (!access_token && !refresh_token) {
+    console.log("NO ACCESS TOKEN")
+    refreshAccessToken();
+  }
+
+  if (error) {
     console.log("ACCESS TOKEN ERROR")
     console.error(error);
     clearMemory();
   }
+
 
   // If there is a valid access token in localStorage, use that
   if (LOCALSTORAGE_VALUES.accessToken && LOCALSTORAGE_VALUES.accessToken !== 'undefined') {
