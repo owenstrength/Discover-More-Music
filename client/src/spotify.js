@@ -79,7 +79,6 @@ const refreshAccessToken = async () => {
 
     // redirect to homepage
     console.log("reloading")
-    history.go(0);
     //window.location.replace(`${window.location.origin}/?${queryParams}`)
     //window.location.reload();
     return;
