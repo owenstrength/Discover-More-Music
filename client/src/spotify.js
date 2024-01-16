@@ -62,6 +62,8 @@ const refreshAccessToken = async () => {
     const { access_token } = JSON.parse(data);
     console.log(access_token)  // Parse the response data as JSON
     setLocalAccessToken(access_token);
+    console.log("reloading")
+    //window.location.reload();
     spotifyApi.setAccessToken(access_token);
     window.localStorage.setItem(LOCALSTORAGE_KEYS.timestamp, Date.now());
 
@@ -76,6 +78,8 @@ const refreshAccessToken = async () => {
     }).toString();
 
     // redirect to homepage
+    console.log("reloading")
+    history.go(0);
     //window.location.replace(`${window.location.origin}/?${queryParams}`)
     //window.location.reload();
     return;
@@ -100,6 +104,7 @@ const getAccessToken = () => {
     refreshAccessToken();
   }
 
+
   if (error) {
     console.log("ACCESS TOKEN ERROR")
     console.error(error);
@@ -111,10 +116,12 @@ const getAccessToken = () => {
   if (LOCALSTORAGE_VALUES.accessToken && LOCALSTORAGE_VALUES.accessToken !== 'undefined') {
     spotifyApi.setAccessToken(LOCALSTORAGE_VALUES.accessToken);
     spotifyApi.setRefreshToken(LOCALSTORAGE_VALUES.refreshToken);
+    refreshAccessToken();
     return LOCALSTORAGE_VALUES.accessToken;
   } else if (access_token) {
     setLocalAccessToken(access_token);
     setLocalRefreshToken(refresh_token);
+    window.location.reload(false)
     return access_token;
   }
 
