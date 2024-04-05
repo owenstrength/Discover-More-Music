@@ -13,5 +13,3 @@
   <p align="center">
   <i align="center">Input Sliders using Styled Components</i>
   </p>
-
- - [website](https://owenstrength.github.io/Discover-More-Music)
